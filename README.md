@@ -4,7 +4,7 @@
 
 In order to make a type check during a functional-style call chain, you can do it in this way:
 
-```
+```csharp
 using Newtonsoft.Json.Linq;
 
 var resultText = (JToken.Parse(rawJSON).SelectToken(jsonPath) is JObject)
@@ -17,7 +17,7 @@ This syntax breaks the flow of reading code from left to right and makes logical
 
 This package provides `Is<T>` extension method as a functional equivalence to the `is` syntax to maintain consistent LTR reading flow and be friendly to the functional syntax. The above first example can be rewritten as follows:
 
-```
+```csharp
 using CLSS.
 using Newtonsoft.Json.Linq;
 
@@ -27,7 +27,7 @@ var resultText = JToken.Parse(rawJSON).SelectToken(jsonPath).Is<JObject>()
 
 It also provides an equivalence to C# 7.0's convenient [declaration syntax](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns#declaration-and-type-patterns):
 
-```
+```csharp
 object greeting = "Hello, World!";
 if (greeting.Is<string>(out string message))
 { ... }
@@ -35,7 +35,7 @@ if (greeting.Is<string>(out string message))
 
 Due to the limitation in the type system of C#, `Is<T>` is limited to using reference types. Passing a value type to the type parameter will cause a compilation error. Note that this limitation is strictly for the type parameter. You can still use value types as the caller of `Is<T>`.
 
-```
+```csharp
 using CLSS;
 
 int number = 5;
